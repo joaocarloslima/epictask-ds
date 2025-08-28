@@ -16,6 +16,11 @@
         <a class="btn btn-ghost text-xl">EpicTask</a>
     </div>
 
+    <a href="/tasks/form" class="btn btn-primary m-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+        Nova Tarefa
+    </a>
+
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
 
         <div th:each="task : ${tasks}" class="card card-border bg-base-300 w-96">
