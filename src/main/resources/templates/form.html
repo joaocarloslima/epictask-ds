@@ -12,25 +12,25 @@
 
 <body>
 
-    <form class="mx-auto mt-8 w-lg" method="post">
+    <form class="mx-auto mt-8 w-lg" method="post" th:object="${task}">
         <h2 class="text-2xl font-bold text-primary">Nova Tarefa</h2>
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Título</legend>
             <input name="title" type="text" class="input" placeholder="título da tarefa" />
-            <p class="label">campo obrigatório</p>
+            <p class="label text-error" th:errors="*{title}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Descrição</legend>
             <input name="description" type="text" class="input" placeholder="descrição da tarefa" />
-            <p class="label">pelo menos 10 caracteres</p>
+            <p class="label text-error" th:errors="*{description}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Pontos</legend>
             <input name="score" type="number" class="input" />
-            <p class="label">de 0 a 100</p>
+            <p class="label text-error" th:errors="*{score}"></p>
         </fieldset>
 
         <div>
