@@ -13,29 +13,29 @@
 <body>
 
     <form class="mx-auto mt-8 w-lg" method="post" th:object="${task}">
-        <h2 class="text-2xl font-bold text-primary">Nova Tarefa</h2>
+        <h2 class="text-2xl font-bold text-primary" th:text="#{task.new}"></h2>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Título</legend>
-            <input name="title" type="text" class="input" placeholder="título da tarefa" />
+            <legend class="fieldset-legend" th:text="#{task.title}"></legend>
+            <input name="title" type="text" class="input" />
             <p class="label text-error" th:errors="*{title}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Descrição</legend>
-            <input name="description" type="text" class="input" placeholder="descrição da tarefa" />
+            <legend class="fieldset-legend" th:text="#{task.description}"></legend>
+            <input name="description" type="text" class="input" />
             <p class="label text-error" th:errors="*{description}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Pontos</legend>
+            <legend class="fieldset-legend" th:text="#{task.score}"></legend>
             <input name="score" type="number" class="input" />
             <p class="label text-error" th:errors="*{score}"></p>
         </fieldset>
 
         <div>
-            <a href="/tasks" class="btn btn-neutral">Cancelar</a>
-            <button class="btn btn-primary">Salvar</button>
+            <a href="/tasks" class="btn btn-neutral" th:text="#{cancel}"></a>
+            <button class="btn btn-primary" th:text="#{save}"></button>
         </div>
 
     </form>

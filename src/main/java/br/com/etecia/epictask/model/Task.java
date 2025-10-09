@@ -22,16 +22,18 @@ public class Task {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank
+    @NotBlank(message = "{task.title.notblank}")
     private String title;
 
-    @Size(min = 10, message = "deve ter pelo menos 10 caracteres")
+    @Size(min = 10, message = "{task.description.size}")
     private String description;
 
-    @Positive
+    @Positive(message = "{task.score.positive}")
     private int score;
 
     @Min(0) @Max(100)
     private int status;
+
+    
     
 }
