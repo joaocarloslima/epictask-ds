@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dracula">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpicTask</title>
+</head>
+
+<body>
+
+    <div class="card bg-neutral text-neutral-content w-96">
+        <div class="card-body items-center text-center">
+            <h2 class="card-title">Logout</h2>
+            <p>Tem certeza que quer sair da aplicação?</p>
+            <div class="card-actions justify-end">
+                <a href="javascript:history.back()" class="btn btn-ghost">Voltar para o app</a>
+                <form th:action="@{/logout}" method="POST">
+                    <button class="btn btn-primary">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
