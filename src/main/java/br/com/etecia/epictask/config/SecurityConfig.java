@@ -15,6 +15,7 @@ public class SecurityConfig {
                         //.requestMatchers("/").permitAll()
                         .requestMatchers("/logout").permitAll()
                         .requestMatchers("/tasks/**").permitAll()
+                            .anyRequest().permitAll()
                     )
                     .oauth2Login(login -> login
                                             .loginPage("/login")
@@ -27,6 +28,7 @@ public class SecurityConfig {
                                             .permitAll()
                                         )
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                     .build();
 
     }
