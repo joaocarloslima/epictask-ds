@@ -72,7 +72,10 @@
                 </div>
             </div>
             <div class="card-actions justify-end m-4">
-                <button class="btn btn-error btn-soft" th:text="#{delete}"></button>
+                <form method="POST" th:action="${'/tasks/' + task.id}">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button class="btn btn-error btn-soft" th:text="#{delete}"></button>
+                </form>
             </div>
         </div>
 

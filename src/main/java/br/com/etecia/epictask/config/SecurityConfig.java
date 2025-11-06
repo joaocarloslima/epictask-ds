@@ -14,7 +14,7 @@ public class SecurityConfig {
                     .authorizeHttpRequests(auth -> auth
                         //.requestMatchers("/").permitAll()
                         .requestMatchers("/logout").permitAll()
-                        .requestMatchers("/tasks/**").authenticated()
+                        .requestMatchers("/tasks/**").permitAll()
                     )
                     .oauth2Login(login -> login
                                             .loginPage("/login")
@@ -26,6 +26,7 @@ public class SecurityConfig {
                                             .logoutSuccessUrl("/login")
                                             .permitAll()
                                         )
+                .csrf(csrf -> csrf.disable())
                     .build();
 
     }

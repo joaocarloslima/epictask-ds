@@ -6,9 +6,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.etecia.epictask.model.Task;
@@ -44,6 +42,14 @@ public class TaskController {
         System.out.println("Cadastrando tarefa..." + task);
         repository.save(task);
         redirect.addFlashAttribute("message", "Tarefa cadastrada com sucesso");
+        return "redirect:/tasks";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes redirect ){
+        System.out.println("Deletando tarefa " + id);
+        repository.deleteById(id);
+        redirect.addFlashAttribute("message", "Tarefa deletada");
         return "redirect:/tasks";
     }
 
