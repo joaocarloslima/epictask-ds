@@ -60,7 +60,12 @@
 
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
 
-        <div th:each="task : ${tasks}" class="card card-border bg-base-300 w-96">
+        <div th:each="task : ${tasks}" class="card card-border bg-base-300 w-96 relative">
+            <div th:if="${task.user != null}" class="avatar absolute top-4 right-4">
+                <div class="w-12 rounded-full">
+                    <img th:src="${task.user.avatar}" />
+                </div>
+            </div>
             <div class="badge badge-accent m-4" th:text="${task.score}"></div>
             <div class="card-body items-center">
                 <h2 class="card-title" th:text="${task.title}"></h2>
@@ -75,6 +80,18 @@
                 <form method="POST" th:action="${'/tasks/' + task.id}">
                     <input type="hidden" name="_method" value="delete" />
                     <button class="btn btn-error btn-soft" th:text="#{delete}"></button>
+                </form>
+                <form method="POST" th:action="${'/tasks/' + task.id + '/catch'}">
+                    <input type="hidden" name="_method" value="put" />
+                    <button class="btn btn-warning btn-soft">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-icon lucide-hand"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                    </button>
+                </form>
+                <form method="POST" th:action="${'/tasks/' + task.id + '/add'}">
+                    <input type="hidden" name="_method" value="put" />
+                    <button class="btn btn-info btn-soft">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fast-forward-icon lucide-fast-forward"><path d="M12 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 12 18z"/><path d="M2 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 2 18z"/></svg>
+                    </button>
                 </form>
             </div>
         </div>

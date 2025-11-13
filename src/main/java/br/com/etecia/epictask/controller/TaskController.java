@@ -1,5 +1,6 @@
 package br.com.etecia.epictask.controller;
 
+import br.com.etecia.epictask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -21,10 +22,12 @@ public class TaskController {
 
     @Autowired
     private TaskRepository repository;
-    
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public String listTasks(Model model, @AuthenticationPrincipal OAuth2User user) {
-        model.addAttribute("tasks", repository.findAll());
+        model.addAttribute("tasks", repository.findByStatusLessThan(100));
         model.addAttribute("user", user);
     
         return "tasks";
@@ -50,6 +53,23 @@ public class TaskController {
         System.out.println("Deletando tarefa " + id);
         repository.deleteById(id);
         redirect.addFlashAttribute("message", "Tarefa deletada");
+        return "redirect:/tasks";
+    }
+
+    @PutMapping("{id}/catch")
+    public String catchTask(@PathVariable Long id, @AuthenticationPrincipal OAuth2User oauth2User){
+        var task = repository.findById(id).get();
+        var user = userService.register(oauth2User);
+        task.setUser(user);
+        repository.save(task);
+        return "redirect:/tasks";
+    }
+
+    @PutMapping("{id}/add")
+    public String addStatus(@PathVariable Long id){
+        var task = repository.findById(id).get();
+        task.setStatus(task.getStatus() + 10);
+        repository.save(task);
         return "redirect:/tasks";
     }
 
